@@ -67,6 +67,9 @@ Nova, Keystone, Glance, etc. up and running.
 
     Optional support is provided for Swift.
 
+Other Prerequistics to support GLINT:
+1. install Glance Client v2.0
+2. install Keystone Client v2.0
 
 Development
 ===========
