@@ -27,6 +27,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from openstack_dashboard import exceptions
 
+os.environ['HTTPS'] = "on"
+
 warnings.formatwarning = lambda message, category, *args, **kwargs: \
     '%s: %s' % (category.__name__, message)
 
