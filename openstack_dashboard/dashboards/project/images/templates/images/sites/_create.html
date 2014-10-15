@@ -6,7 +6,7 @@
 {% block form_action %}{% url 'horizon:project:images:images:createsite' %}{% endblock %}
 {% block form_attrs %}enctype="multipart/form-data"{% endblock %}
 
-{% block modal-header %}{% trans "Create Site" %}{% endblock %}
+{% block modal-header %}{% trans "Add Repository" %}{% endblock %}
 
 {% block modal-body %}
 <div class="left">
@@ -24,6 +24,6 @@
 {% endblock %}
 
 {% block modal-footer %}
-  <input class="btn btn-primary pull-right" type="submit" value="{% trans "Create Site" %}" />
+  <input class="btn btn-primary pull-right" type="submit" value="{% trans "Add Repository" %}" />
   <a href="{% url 'horizon:project:images:index' %}" class="btn secondary cancel close">{% trans "Cancel" %}</a>
 {% endblock %}
