@@ -79,7 +79,8 @@ class AddCredential(tables.LinkAction):
     classes = ("ajax-modal", "btn-edit")
     policy_rules = (("credential", "add_credential"),)
 
-    
+    def allowed(self,request,repo=None):
+        print "Should credential be Add or Edit"
     
     
 class DeleteSite(tables.DeleteAction):
@@ -89,7 +90,7 @@ class DeleteSite(tables.DeleteAction):
 
     def allowed(self, request, site=None):
         # Protected images can not be deleted.
-        #print("check if allowed")
+        print("check if delete site is allowed")
         #if site and site.protected:
         #    return False
         #if site:
