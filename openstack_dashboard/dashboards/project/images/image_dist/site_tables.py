@@ -83,6 +83,7 @@ class AddCredential(tables.LinkAction):
 
     def allowed(self,request,repo=None):
         print "Should credential be Add or Edit %s"%request
+        self.verbose_name = _("EditCredential")
         return True
     
     
