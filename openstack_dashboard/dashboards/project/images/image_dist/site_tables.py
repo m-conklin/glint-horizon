@@ -42,7 +42,7 @@ NOT_LAUNCHABLE_FORMATS = ['aki', 'ari']
 site_data=[]
 site_index=0
 
-logging.basicConfig(filename='hor.log',level=eval('INFO'),format='%(asctime)s %(message)s')
+logging.basicConfig(filename='hor.log',level=eval('Info'),format='%(asctime)s %(message)s')
     
     
 class LaunchImage(tables.LinkAction):
