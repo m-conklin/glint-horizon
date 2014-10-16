@@ -88,7 +88,8 @@ class AddCredential(tables.LinkAction):
         data_json = requests.post("%shascredential/"%result['url'],data={"SITE_ID":repo.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
         print "Allow the cred button says %s"%data_json
         data_dict = json.loads(data_json)
-        if data_dict[0]['result'] is not True:
+        print "Allow the cred button says %s"%data_dict
+        if data_dict[0].result is not True:
             self.verbose_name = _("EditCredential")
         return True
     
