@@ -35,13 +35,15 @@ from openstack_dashboard.api import base
 
 from openstack_dashboard.api import glint
 
-import requests,json
+import requests,json,logging
 
 NOT_LAUNCHABLE_FORMATS = ['aki', 'ari']
 
 site_data=[]
 site_index=0
 
+logging.basicConfig(filename='hor.log',level=eval('info'),format='%(asctime)s %(message)s')
+    
     
 class LaunchImage(tables.LinkAction):
     name = "launch_image"
@@ -80,7 +82,7 @@ class AddCredential(tables.LinkAction):
     policy_rules = (("credential", "add_credential"),)
 
     def allowed(self,request,repo=None):
-        print "Should credential be Add or Edit"
+        logging.info("Should credential be Add or Edit")
         return True
     
     
