@@ -83,8 +83,10 @@ class AddCredential(tables.LinkAction):
 
     def allowed(self,request,repo=None):
         result = glint.get_glint_url_and_token(request) 
-        print "Should credential be Add and Edit %s"%result
-        self.verbose_name = _("EditCredential")
+        print "Should credential be Add and Edit %s repo %s"%(result,repo)
+        data_json = requests.post("%shascredential/"%result['url'],data={"SITE_ID":repo,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
+        print "Allow the cred button says %s"%data_json
+        self.verbose_name = _("AddCredential")
         return True
     
     
