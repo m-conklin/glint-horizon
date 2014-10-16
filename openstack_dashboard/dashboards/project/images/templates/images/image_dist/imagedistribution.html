@@ -259,19 +259,21 @@ function image_select(id){
 {% endblock %}
 
 {% block table %}
-<table><tr><td>Distribution</td><td>
+<div style="float: left;">Distribution</div>
+<div style="float: right;">
 <input type="button" value="all" style="border-style:inset;" class="btn btn-small" onclick="showall()">
 <input type="button" value="Project" class="btn btn-small" onclick="project()">
 <input type="button" value="Shared" class="btn btn-small" onclick="shared()">
 <input type="button" value="Public" class="btn btn-small" onclick="public()">
 | <input type="button" value="Save" class="btn btn-small" onclick="save()">
-</td></tr></table>
+</div>
+
 <br><br>
 <div class="table_wrapper">
 <table border=1 class="table table-bordered table-striped datatable">
 <tr><td></td>
 {% for row in data.sites %}
-<td><b>{{row.tenent}} on {{row.name}}</b></td>
+<td><b>{{row.name}} ({{row.tenent}})</b></td>
 {% endfor %}
 
 </tr>
