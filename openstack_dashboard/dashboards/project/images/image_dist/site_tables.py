@@ -42,7 +42,7 @@ NOT_LAUNCHABLE_FORMATS = ['aki', 'ari']
 site_data=[]
 site_index=0
 
-logging.basicConfig(filename='hor.log',level=eval('Info'),format='%(asctime)s %(message)s')
+#logging.basicConfig(filename='hor.log',level=eval('Info'),format='%(asctime)s %(message)s')
     
     
 class LaunchImage(tables.LinkAction):
@@ -82,7 +82,7 @@ class AddCredential(tables.LinkAction):
     policy_rules = (("credential", "add_credential"),)
 
     def allowed(self,request,repo=None):
-        logging.info("Should credential be Add or Edit")
+        #logging.info("Should credential be Add or Edit")
         return True
     
     
