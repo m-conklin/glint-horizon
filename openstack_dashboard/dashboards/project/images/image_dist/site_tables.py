@@ -89,7 +89,7 @@ class AddCredential(tables.LinkAction):
         print "Allow the cred button says %s"%data_json
         data_dict = json.loads(data_json)
         print "Allow the cred button says %s"%data_dict
-        if data_dict['result'] is not True:
+        if data_dict['result'] is True:
             self.verbose_name = _("EditCredential")
         return True
     
