@@ -82,7 +82,8 @@ class AddCredential(tables.LinkAction):
     policy_rules = (("credential", "add_credential"),)
 
     def allowed(self,request,repo=None):
-        print "Should credential be Add or Edit %s"%request
+        result = glint.get_glint_url_and_token(request) 
+        print "Should credential be Add and Edit %s"%result
         self.verbose_name = _("EditCredential")
         return True
     
