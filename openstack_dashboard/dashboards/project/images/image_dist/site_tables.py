@@ -84,7 +84,7 @@ class AddCredential(tables.LinkAction):
     
 class DeleteSite(tables.DeleteAction):
     data_type_singular = _("Repository")
-    data_type_plural = _("Repositories")
+    data_type_plural = _("Repository")
     policy_rules = (("site", "delete_site"),)
 
     def allowed(self, request, site=None):
