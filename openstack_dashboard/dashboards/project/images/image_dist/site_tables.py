@@ -82,7 +82,7 @@ class AddCredential(tables.LinkAction):
     policy_rules = (("credential", "add_credential"),)
 
     def allowed(self,request,repo=None):
-        #logging.info("Should credential be Add or Edit")
+        print "Should credential be Add or Edit %"%request
         return True
     
     
