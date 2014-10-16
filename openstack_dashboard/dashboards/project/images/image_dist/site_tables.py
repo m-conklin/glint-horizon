@@ -83,8 +83,8 @@ class AddCredential(tables.LinkAction):
     
     
 class DeleteSite(tables.DeleteAction):
-    data_type_singular = _("Site")
-    data_type_plural = _("Sites")
+    data_type_singular = _("Repository")
+    data_type_plural = _("Repositories")
     policy_rules = (("site", "delete_site"),)
 
     def allowed(self, request, site=None):
@@ -107,7 +107,7 @@ class DeleteSite(tables.DeleteAction):
 
 class CreateSite(tables.LinkAction):
     name = "create"
-    verbose_name = _("Create Site")
+    verbose_name = _("Add Repository")
     url = "horizon:project:images:images:createsite"
     classes = ("ajax-modal", "btn-create")
     policy_rules = (("site", "create_site"),)
@@ -272,7 +272,7 @@ class SitesTable(tables.DataTable):
     #    ("killed", False),
     #    ("deleted", False),
     #)
-    name = tables.Column(get_site_name, verbose_name=_("Site Name"))
+    name = tables.Column(get_site_name, verbose_name=_("Name"))
     site_url = tables.Column(get_site_url, verbose_name=_("Cloud URL"))
     auth_port = tables.Column(get_site_authport, verbose_name=_("Auth Port"))
     site_type = tables.Column(get_site_type, verbose_name=_("Cloud Type"))
@@ -295,7 +295,7 @@ class SitesTable(tables.DataTable):
         name = "sites"
         row_class = UpdateSiteRow
         #status_columns = ["status"]
-        verbose_name = _("Sites")
+        verbose_name = _("Repositories")
         table_actions = ( CreateSite, DeleteSite )
         row_actions = ( AddCredential,DeleteSite ,  )
         pagination_param = "site_marker"
