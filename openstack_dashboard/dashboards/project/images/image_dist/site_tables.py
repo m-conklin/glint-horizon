@@ -99,7 +99,7 @@ class DeleteCredential(tables.Action):
     name="delcred"
     preempt=None
     method=None
-    handle = single
+    handle = 'single'
 
     def _allowed(self, request, cred=None):
         try:
