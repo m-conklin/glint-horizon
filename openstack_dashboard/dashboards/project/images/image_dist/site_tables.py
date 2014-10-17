@@ -96,7 +96,7 @@ class AddCredential(tables.LinkAction):
 class DeleteCredential(tables.Action):
     verbose_name = _("Delete Credential")
     attrs=None
-    #_allowed=True
+    name="delcred"
     preempt=None
     method=None
 
