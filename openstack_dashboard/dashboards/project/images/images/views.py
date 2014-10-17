@@ -52,7 +52,7 @@ def save(request):
 
 class EditCredentialView(forms.ModalFormView):
     form_class = project_forms.AddCredentialForm 
-    template_name = 'project/images/credentials/create.html'
+    template_name = 'project/images/credentials/edit.html'
     context_object_name = 'credential'
     success_url = reverse_lazy("horizon:project:images:index")
     
