@@ -78,7 +78,7 @@ class EditCredentialView(forms.ModalFormView):
         return context
 
     def get_initial(self):
-        print "init site info %s"%self.get_object()
+        print "INIT SITE INFO %s"%self.get_object()
         return self.get_object()
         #image = self.get_object()
         #properties = getattr(image, 'properties', {})
