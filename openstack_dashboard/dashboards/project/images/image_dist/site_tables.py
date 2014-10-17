@@ -128,9 +128,9 @@ class DeleteCredential(tables.UpdateAction):
             return False
 
     def update(self, request, obj_id):
-        print("delete Cred %s"%obj_id)
+        print("Update Cred %s"%obj_id)
         result = glint.get_glint_url_and_token(request) 
-        data_json = requests.post("%sdeletecredential/"%result['url'],data={"SITE_ID":obj_id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
+        data_json = requests.post("%sdeletecredential/"%result['url'],data={"SITE_ID":obj_id.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
         #data_obj = json.loads(data_json)
         print "Received back %s"%data_json
 
