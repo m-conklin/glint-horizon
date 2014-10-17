@@ -97,6 +97,7 @@ class DeleteCredential(tables.LinkAction):
     data_type_singular = _("Repository")
     data_type_plural = _("Repository")
     policy_rules = (("cred", "delete_cred"),)
+    verbose_name = _("Delete Credential")
 
     
 class DeleteSite(tables.DeleteAction):
