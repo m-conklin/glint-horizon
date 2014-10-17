@@ -71,7 +71,7 @@ class EditCredentialView(forms.ModalFormView):
 
     def get_context_data(self, **kwargs):
         print "get CredentialView Context Data"
-        context = super(AddCredentialView, self).get_context_data(**kwargs)
+        context = super(EditCredentialView, self).get_context_data(**kwargs)
         print "context str %s"%context
         context['credential'] = self.get_object()
         print "new context str %s"%context
