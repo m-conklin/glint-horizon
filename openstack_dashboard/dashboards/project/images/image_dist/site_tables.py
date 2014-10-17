@@ -155,7 +155,7 @@ class DeleteSite(tables.DeleteAction):
             print("check if delete site is allowed %s"%site)
             if site is None:
                 print "Delete  site is none, but show Delete Site"
-                return True
+                return False
             #if site and site.protected:
             #    return False
             #if site:
