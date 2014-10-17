@@ -96,7 +96,7 @@ class AddCredential(tables.LinkAction):
 class DeleteCredential(tables.UpdateAction):
     data_type_singular = _("Credential")
     data_type_plural = _("Credential")
-    
+    attrs=None
 
     def allowed(self, request, cred=None):
         try:
