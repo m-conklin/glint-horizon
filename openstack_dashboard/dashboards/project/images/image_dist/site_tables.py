@@ -100,22 +100,25 @@ class DeleteSite(tables.DeleteAction):
     policy_rules = (("site", "delete_site"),)
 
     def allowed(self, request, site=None):
-        # Protected images can not be deleted.
-        print("check if delete site is allowed")
-        #if site and site.protected:
-        #    return False
-        #if site:
-        #    return site.owner == request.user.tenant_id
-        # Return True to allow table-level bulk delete action to appear.
-        result = glint.get_glint_url_and_token(request) 
-        data_json = requests.post("%shascredential/"%result['url'],data={"SITE_ID":site.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
-        #print "Allow the cred button says %s"%data_json
-        data_dict = json.loads(data_json)
-        #print "Allow the cred button says %s"%data_dict
-        if data_dict['result'] is True:
-            #self.verbose_name = _("EditCredential")
-            return False
-        return True
+        try:
+            # Protected images can not be deleted.
+            print("check if delete site is allowed %s"%site)
+            #if site and site.protected:
+            #    return False
+            #if site:
+            #    return site.owner == request.user.tenant_id
+            # Return True to allow table-level bulk delete action to appear.
+            result = glint.get_glint_url_and_token(request) 
+            data_json = requests.post("%shascredential/"%result['url'],data={"SITE_ID":site.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
+            #print "Allow the cred button says %s"%data_json
+            data_dict = json.loads(data_json)
+            #print "Allow the cred button says %s"%data_dict
+            if data_dict['result'] is True:
+                #self.verbose_name = _("EditCredential")
+                return False
+            return True
+        except:
+            return True
 
     def delete(self, request, obj_id):
         print("delete Site %s"%obj_id)
