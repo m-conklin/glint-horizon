@@ -91,6 +91,7 @@ class AddCredential(tables.LinkAction):
         #print "Allow the cred button says %s"%data_dict
         if data_dict['result'] is True:
             self.verbose_name = _("EditCredential")
+            self.url = "horizon:project:images:images:editcredential"
         return True
     
 class DeleteCredential(tables.Action):
