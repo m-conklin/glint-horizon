@@ -85,7 +85,7 @@ class AddCredential(tables.LinkAction):
         result = glint.get_glint_url_and_token(request) 
         #attr=dir(repo)
         #print "Should credential be Add and Edit %s repo %s attr:"%(result,repo.id)
-        data_json = requests.post("%shascredential/"%result['url'],data={"SITE_ID":repo.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
+        data_json = requests.post("%shascredential/"%result['url'],data={"CK_TYPE":"ONE","SITE_ID":repo.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
         #print "Allow the cred button says %s"%data_json
         data_dict = json.loads(data_json)
         #print "Allow the cred button says %s"%data_dict
@@ -109,7 +109,7 @@ class DeleteSite(tables.DeleteAction):
             #    return site.owner == request.user.tenant_id
             # Return True to allow table-level bulk delete action to appear.
             result = glint.get_glint_url_and_token(request) 
-            data_json = requests.post("%shascredential/"%result['url'],data={"SITE_ID":site.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
+            data_json = requests.post("%shascredential/"%result['url'],data={"CK_TYPE":"ALL","SITE_ID":site.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
             #print "Allow the cred button says %s"%data_json
             data_dict = json.loads(data_json)
             #print "Allow the cred button says %s"%data_dict
