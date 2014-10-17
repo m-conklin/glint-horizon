@@ -94,8 +94,8 @@ class AddCredential(tables.LinkAction):
         return True
     
 class DeleteCredential(tables.DeleteAction):
-    data_type_singular = _("Repository")
-    data_type_plural = _("Repository")
+    data_type_singular = _("Credential")
+    data_type_plural = _("Credential")
     
 
     def allowed(self, request, cred=None):
@@ -103,7 +103,7 @@ class DeleteCredential(tables.DeleteAction):
             # Protected images can not be deleted.
             print("check if delete site is allowed %s"%cred)
             if cred is None:
-                print "Cred is None"
+                print "Cred is None, Dont show delete credential"
                 return False
             #if site and site.protected:
             #    return False
@@ -117,14 +117,16 @@ class DeleteCredential(tables.DeleteAction):
             print "Allow the cred button says %s"%data_dict
             if data_dict['result'] is True:
                 #self.verbose_name = _("EditCredential")
+                print "Show Delete Credential"
                 return True
+            print "Don't Show Delete Credential"
             return False
         except:
-            print "Esception occured on det if del cred is visible"
+            print "Esception occured on det if del cred is visible dont show del credential"
             return False
 
     def delete(self, request, obj_id):
-        print("delete Site %s"%obj_id)
+        print("delete Cred %s"%obj_id)
         result = glint.get_glint_url_and_token(request) 
         data_json = requests.post("%sdeletecred/"%result['url'],data={"SITE_ID":obj_id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
         #data_obj = json.loads(data_json)
@@ -141,7 +143,7 @@ class DeleteSite(tables.DeleteAction):
             # Protected images can not be deleted.
             print("check if delete site is allowed %s"%site)
             if site is None:
-                print "Delete  site is none"
+                print "Delete  site is none, but show Delete Site"
                 return True
             #if site and site.protected:
             #    return False
@@ -155,8 +157,9 @@ class DeleteSite(tables.DeleteAction):
             print "Allow the site button says %s"%data_dict
             if data_dict['result'] is True:
                 #self.verbose_name = _("EditCredential")
-                print "Result is True, a cred exists on this site, so return False"
+                print "Don't Show Delete Site Cause Cred exists"
                 return False
+            print "Show Delete Site"
             return True
         except:
             print "Exception occured on del stie is avail on site %s"%site
