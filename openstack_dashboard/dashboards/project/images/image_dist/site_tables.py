@@ -365,5 +365,5 @@ class SitesTable(tables.DataTable):
         #status_columns = ["status"]
         verbose_name = _("Repositories")
         table_actions = ( CreateSite, DeleteSite )
-        row_actions = ( AddCredential,DeleteSite )
+        row_actions = ( AddCredential,DeleteSite, DeleteCredential )
         pagination_param = "site_marker"
