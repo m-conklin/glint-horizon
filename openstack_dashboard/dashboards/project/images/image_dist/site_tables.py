@@ -128,8 +128,22 @@ class DeleteCredential(tables.Action):
             print "Esception occured on det if del cred is visible dont show del credential"
             return False
 
+    def multiple(self,table, request, obj_id):
+        print("Update -mul- Cred %s"%obj_id)
+        result = glint.get_glint_url_and_token(request) 
+        data_json = requests.post("%sdeletecredential/"%result['url'],data={"SITE_ID":obj_id.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
+        #data_obj = json.loads(data_json)
+        print "Received back %s"%data_json
+    
+    def handle(self,table, request, obj_id):
+        print("Update -hdl- Cred %s"%obj_id)
+        result = glint.get_glint_url_and_token(request) 
+        data_json = requests.post("%sdeletecredential/"%result['url'],data={"SITE_ID":obj_id.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
+        #data_obj = json.loads(data_json)
+        print "Received back %s"%data_json
+        
     def single(self,table, request, obj_id):
-        print("Update Cred %s"%obj_id)
+        print("Update -sing- Cred %s"%obj_id)
         result = glint.get_glint_url_and_token(request) 
         data_json = requests.post("%sdeletecredential/"%result['url'],data={"SITE_ID":obj_id.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
         #data_obj = json.loads(data_json)
