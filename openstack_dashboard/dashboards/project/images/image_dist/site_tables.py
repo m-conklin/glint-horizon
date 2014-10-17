@@ -97,6 +97,7 @@ class DeleteCredential(tables.UpdateAction):
     data_type_singular = _("Credential")
     data_type_plural = _("Credential")
     attrs=None
+    _allowed=True
 
     def allowed(self, request, cred=None):
         try:
