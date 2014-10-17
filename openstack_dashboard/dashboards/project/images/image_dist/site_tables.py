@@ -109,9 +109,9 @@ class DeleteCredential(tables.DeleteAction):
             # Return True to allow table-level bulk delete action to appear.
             result = glint.get_glint_url_and_token(request) 
             data_json = requests.post("%shascredential/"%result['url'],data={"CK_TYPE":"ONE","SITE_ID":site.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
-            #print "Allow the cred button says %s"%data_json
+            print "Allow the cred button says %s"%data_json
             data_dict = json.loads(data_json)
-            #print "Allow the cred button says %s"%data_dict
+            print "Allow the cred button says %s"%data_dict
             if data_dict['result'] is True:
                 #self.verbose_name = _("EditCredential")
                 return True
@@ -144,16 +144,16 @@ class DeleteSite(tables.DeleteAction):
             # Return True to allow table-level bulk delete action to appear.
             result = glint.get_glint_url_and_token(request) 
             data_json = requests.post("%shascredential/"%result['url'],data={"CK_TYPE":"ALL","SITE_ID":site.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
-            #print "Allow the cred button says %s"%data_json
+            print "Allow the site button says %s"%data_json
             data_dict = json.loads(data_json)
-            #print "Allow the cred button says %s"%data_dict
+            print "Allow the site button says %s"%data_dict
             if data_dict['result'] is True:
                 #self.verbose_name = _("EditCredential")
                 return False
             return True
         except:
             print "Exception occured on del stie is avail"
-            return True
+            return False
 
     def delete(self, request, obj_id):
         print("delete Site %s"%obj_id)
