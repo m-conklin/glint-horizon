@@ -93,7 +93,7 @@ class AddCredential(tables.LinkAction):
             self.verbose_name = _("EditCredential")
         return True
     
-class DeleteCredential(tables.BatchAction):
+class DeleteCredential(tables.Action):
     verbose_name = _("Delete Credential")
     attrs=None
     name="delcred"
