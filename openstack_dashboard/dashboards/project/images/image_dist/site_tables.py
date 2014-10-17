@@ -138,8 +138,8 @@ class DeleteSite(tables.DeleteAction):
             # Protected images can not be deleted.
             print("check if delete site is allowed %s"%site)
             if site is None:
-                print "Delte Stie site is none"
-                return False
+                print "Delete  site is none"
+                return True
             #if site and site.protected:
             #    return False
             #if site:
