@@ -49,6 +49,50 @@ def save(request):
     data_json = requests.post("%ssave/"%result['url'],data={"jsonMsg":request.POST['jsonMsg'],"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
     #print "received %s "%data_json
     return HttpResponse("%s"%data_json)
+
+class EditCredentialView(forms.ModalFormView):
+    form_class = project_forms.AddCredentialForm 
+    template_name = 'project/images/credentials/create.html'
+    context_object_name = 'credential'
+    success_url = reverse_lazy("horizon:project:images:index")
+    
+    @memoized.memoized_method
+    def get_object(self):
+        print "Get Credentials Object"
+        obj = {}
+        obj['site_id']=self.kwargs['site_id']
+        return obj
+        #try:
+        #    return api.glance.image_get(self.request, self.kwargs['image_id'])
+        #except Exception:
+        #    msg = _('Unable to retrieve image.')
+        #    url = reverse('horizon:project:images:index')
+        #    exceptions.handle(self.request, msg, redirect=url)
+
+    def get_context_data(self, **kwargs):
+        print "get CredentialView Context Data"
+        context = super(AddCredentialView, self).get_context_data(**kwargs)
+        print "context str %s"%context
+        context['credential'] = self.get_object()
+        print "new context str %s"%context
+        return context
+
+    def get_initial(self):
+        print "init site info %s"%self.get_object()
+        return self.get_object()
+        #image = self.get_object()
+        #properties = getattr(image, 'properties', {})
+        #return {'image_id': self.kwargs['image_id'],
+        #        'name': getattr(image, 'name', None) or image.id,
+        #        'description': properties.get('description', ''),
+        #        'kernel': properties.get('kernel_id', ''),
+        #       'ramdisk': properties.get('ramdisk_id', ''),
+        #        'architecture': properties.get('architecture', ''),
+        #        'disk_format': getattr(image, 'disk_format', None),
+        #        'public': getattr(image, 'is_public', None),
+        #        'protected': getattr(image, 'protected', None)}
+
+    
     
 class AddCredentialView(forms.ModalFormView):
     form_class = project_forms.AddCredentialForm 

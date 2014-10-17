@@ -29,7 +29,7 @@ VIEWS_MOD = 'openstack_dashboard.dashboards.project.images.images.views'
 
 urlpatterns = patterns(VIEWS_MOD,
     url(r'^(?P<site_id>[^/]+)/editcredential/$', views.AddCredentialView.as_view() , name='editcredential'),
-    url(r'^(?P<site_id>[^/]+)/addcredential/$', views.AddCredentialView.as_view() , name='addcredential'), 
+    url(r'^(?P<site_id>[^/]+)/addcredential/$', views.EditCredentialView.as_view() , name='addcredential'), 
     url(r'^create/$', views.CreateView.as_view(), name='create'),
     url(r'^save', views.save , name='save'),
     url(r'^createsite/$', views.CreateSiteView.as_view() , name='createsite'),
