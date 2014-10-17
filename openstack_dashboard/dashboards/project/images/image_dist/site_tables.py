@@ -128,8 +128,9 @@ class DeleteCredential(tables.Action):
             print "Esception occured on det if del cred is visible dont show del credential"
             return False
 
-        
-    #def single(self,table, request, obj_id):
+      
+    def handle(self,table, request, obj_id):
+        print "Handle this Biasth"
     def action(self, request, obj_id):
         print("Update -sing- Cred %s"%obj_id)
         result = glint.get_glint_url_and_token(request) 
