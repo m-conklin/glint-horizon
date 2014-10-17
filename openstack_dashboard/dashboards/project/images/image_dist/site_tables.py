@@ -97,6 +97,7 @@ class DeleteCredential(tables.UpdateAction):
     verbose_name = _("Delete Credential")
     attrs=None
     #_allowed=True
+    preempt=None
 
     def _allowed(self, request, cred=None):
         try:
