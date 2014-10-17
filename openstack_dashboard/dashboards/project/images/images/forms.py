@@ -287,7 +287,7 @@ class CreateSiteForm(forms.SelfHandlingForm):
             
 class AddCredentialForm(forms.SelfHandlingForm):
     site_id = forms.CharField(widget=forms.HiddenInput())
-    tenent = forms.CharField(max_length="255", label=_("Tenent"), required=True)
+    tenent = forms.CharField(max_length="255", label=_("Tenant"), required=True)
     username = forms.CharField(max_length="255", label=_("User Name"), required=True)
     password = forms.CharField(max_length="255", label=_("Password"), required=True,widget=forms.PasswordInput())
     
