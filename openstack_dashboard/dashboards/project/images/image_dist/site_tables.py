@@ -96,6 +96,7 @@ class AddCredential(tables.LinkAction):
 class DeleteCredential(tables.UpdateAction):
     data_type_singular = _("Credential")
     data_type_plural = _("Credential")
+    verbose_name = _("Delete Credential")
     attrs=None
     #_allowed=True
 
