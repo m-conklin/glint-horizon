@@ -93,7 +93,7 @@ class AddCredential(tables.LinkAction):
             self.verbose_name = _("EditCredential")
         return True
     
-class DeleteCredential(tables.DeleteAction):
+class DeleteCredential(tables.UpdateAction):
     data_type_singular = _("Credential")
     data_type_plural = _("Credential")
     
@@ -125,7 +125,7 @@ class DeleteCredential(tables.DeleteAction):
             print "Esception occured on det if del cred is visible dont show del credential"
             return False
 
-    def delete(self, request, obj_id):
+    def update(self, request, obj_id):
         print("delete Cred %s"%obj_id)
         result = glint.get_glint_url_and_token(request) 
         data_json = requests.post("%sdeletecred/"%result['url'],data={"SITE_ID":obj_id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
