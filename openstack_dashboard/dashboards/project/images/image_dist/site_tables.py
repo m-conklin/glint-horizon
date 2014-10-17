@@ -93,7 +93,7 @@ class AddCredential(tables.LinkAction):
             self.verbose_name = _("EditCredential")
         return True
     
-class DeleteCredential(tables.DeleteAction):
+class DeleteCredential(tables.LinkAction):
     data_type_singular = _("Credential")
     data_type_plural = _("Credential")
     policy_rules = (("credential", "delete_credential"),)
