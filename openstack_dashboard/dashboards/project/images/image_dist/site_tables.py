@@ -115,14 +115,14 @@ class DeleteCredential(tables.Action):
             # Return True to allow table-level bulk delete action to appear.
             result = glint.get_glint_url_and_token(request) 
             data_json = requests.post("%shascredential/"%result['url'],data={"CK_TYPE":"ONE","SITE_ID":cred.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
-            print "Allow the cred button says %s"%data_json
+            #print "Allow the cred button says %s"%data_json
             data_dict = json.loads(data_json)
-            print "Allow the cred button says %s"%data_dict
+            #print "Allow the cred button says %s"%data_dict
             if data_dict['result'] is True:
                 #self.verbose_name = _("EditCredential")
-                print "Show Delete Credential"
+                #print "Show Delete Credential"
                 return True
-            print "Don't Show Delete Credential"
+            #print "Don't Show Delete Credential"
             return False
         except:
             print "Esception occured on det if del cred is visible dont show del credential"
@@ -152,9 +152,9 @@ class DeleteSite(tables.DeleteAction):
     def allowed(self, request, site=None):
         try:
             # Protected images can not be deleted.
-            print("check if delete site is allowed %s"%site)
+            #print("check if delete site is allowed %s"%site)
             if site is None:
-                print "Delete  site is none, but show Delete Site"
+                #print "Delete  site is none, but show Delete Site"
                 return False
             #if site and site.protected:
             #    return False
@@ -163,21 +163,21 @@ class DeleteSite(tables.DeleteAction):
             # Return True to allow table-level bulk delete action to appear.
             result = glint.get_glint_url_and_token(request) 
             data_json = requests.post("%shascredential/"%result['url'],data={"CK_TYPE":"ALL","SITE_ID":site.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
-            print "Allow the site button says %s"%data_json
+            #print "Allow the site button says %s"%data_json
             data_dict = json.loads(data_json)
-            print "Allow the site button says %s"%data_dict
+            #print "Allow the site button says %s"%data_dict
             if data_dict['result'] is True:
                 #self.verbose_name = _("EditCredential")
-                print "Don't Show Delete Site Cause Cred exists"
+                #print "Don't Show Delete Site Cause Cred exists"
                 return False
-            print "Show Delete Site"
+            #print "Show Delete Site"
             return True
         except:
-            print "Exception occured on del stie is avail on site %s"%site
+            #print "Exception occured on del stie is avail on site %s"%site
             return False
 
     def delete(self, request, obj_id):
-        print("delete Site %s"%obj_id)
+        #print("delete Site %s"%obj_id)
         result = glint.get_glint_url_and_token(request) 
         data_json = requests.post("%sdeletesite/"%result['url'],data={"SITE_ID":obj_id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
         #data_obj = json.loads(data_json)
