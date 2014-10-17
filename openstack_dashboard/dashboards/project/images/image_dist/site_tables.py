@@ -97,9 +97,9 @@ class DeleteCredential(tables.UpdateAction):
     data_type_singular = _("Credential")
     data_type_plural = _("Credential")
     attrs=None
-    _allowed=True
+    #_allowed=True
 
-    def allowed(self, request, cred=None):
+    def _allowed(self, request, cred=None):
         try:
             # Protected images can not be deleted.
             print("check if delete Cred is allowed %s"%cred)
