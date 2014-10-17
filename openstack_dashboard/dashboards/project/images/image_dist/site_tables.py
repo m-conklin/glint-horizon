@@ -98,6 +98,7 @@ class DeleteCredential(tables.UpdateAction):
     attrs=None
     #_allowed=True
     preempt=None
+    method=None
 
     def _allowed(self, request, cred=None):
         try:
