@@ -101,7 +101,7 @@ class DeleteCredential(tables.DeleteAction):
     def allowed(self, request, cred=None):
         try:
             # Protected images can not be deleted.
-            print("check if delete site is allowed %s"%cred)
+            print("check if delete Cred is allowed %s"%cred)
             if cred is None:
                 print "Cred is None, Dont show delete credential"
                 return False
