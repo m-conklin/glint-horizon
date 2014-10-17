@@ -93,11 +93,38 @@ class AddCredential(tables.LinkAction):
             self.verbose_name = _("EditCredential")
         return True
     
-class DeleteCredential(tables.LinkAction):
+class DeleteCredential(tables.DeleteAction):
     data_type_singular = _("Repository")
     data_type_plural = _("Repository")
-    policy_rules = (("cred", "delete_cred"),)
-    verbose_name = _("Delete Credential")
+    
+
+    def allowed(self, request, site=None):
+        try:
+            # Protected images can not be deleted.
+            print("check if delete site is allowed %s"%site)
+            #if site and site.protected:
+            #    return False
+            #if site:
+            #    return site.owner == request.user.tenant_id
+            # Return True to allow table-level bulk delete action to appear.
+            result = glint.get_glint_url_and_token(request) 
+            data_json = requests.post("%shascredential/"%result['url'],data={"CK_TYPE":"ALL","SITE_ID":site.id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
+            #print "Allow the cred button says %s"%data_json
+            data_dict = json.loads(data_json)
+            #print "Allow the cred button says %s"%data_dict
+            if data_dict['result'] is True:
+                #self.verbose_name = _("EditCredential")
+                return False
+            return True
+        except:
+            return True
+
+    def delete(self, request, obj_id):
+        print("delete Site %s"%obj_id)
+        result = glint.get_glint_url_and_token(request) 
+        data_json = requests.post("%sdeletesite/"%result['url'],data={"SITE_ID":obj_id,"USER_ID":request.user,"USER_TOKEN":"%s"%result['token'],"USER_TENANT":request.user.token.tenant['name']},cookies=None).text
+        #data_obj = json.loads(data_json)
+        print "Received back %s"%data_json
 
     
 class DeleteSite(tables.DeleteAction):
@@ -326,5 +353,5 @@ class SitesTable(tables.DataTable):
         #status_columns = ["status"]
         verbose_name = _("Repositories")
         table_actions = ( CreateSite, DeleteSite )
-        row_actions = ( AddCredential,DeleteSite  , )
+        row_actions = ( AddCredential,DeleteSite  , DeleteCredential)
         pagination_param = "site_marker"
