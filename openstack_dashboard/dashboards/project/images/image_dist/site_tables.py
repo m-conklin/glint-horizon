@@ -43,7 +43,7 @@ site_data=[]
 site_index=0
 
 #logging.basicConfig(filename='hor.log',level=eval('Info'),format='%(asctime)s %(message)s')
-    
+ 
     
 class LaunchImage(tables.LinkAction):
     name = "launch_image"
@@ -94,8 +94,6 @@ class AddCredential(tables.LinkAction):
         return True
     
 class DeleteCredential(tables.UpdateAction):
-    data_type_singular = _("Credential")
-    data_type_plural = _("Credential")
     verbose_name = _("Delete Credential")
     attrs=None
     #_allowed=True
