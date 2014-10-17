@@ -137,6 +137,9 @@ class DeleteSite(tables.DeleteAction):
         try:
             # Protected images can not be deleted.
             print("check if delete site is allowed %s"%site)
+            if site is None:
+                print "Delte Stie site is none"
+                return False
             #if site and site.protected:
             #    return False
             #if site:
@@ -149,10 +152,11 @@ class DeleteSite(tables.DeleteAction):
             print "Allow the site button says %s"%data_dict
             if data_dict['result'] is True:
                 #self.verbose_name = _("EditCredential")
+                print "Result is True, a cred exists on this site, so return False"
                 return False
             return True
         except:
-            print "Exception occured on del stie is avail"
+            print "Exception occured on del stie is avail on site %s"%site
             return False
 
     def delete(self, request, obj_id):
@@ -355,5 +359,5 @@ class SitesTable(tables.DataTable):
         #status_columns = ["status"]
         verbose_name = _("Repositories")
         table_actions = ( CreateSite, DeleteSite )
-        row_actions = ( AddCredential,DeleteSite  , DeleteCredential)
+        row_actions = ( AddCredential,DeleteSite )
         pagination_param = "site_marker"
