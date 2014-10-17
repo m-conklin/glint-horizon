@@ -295,7 +295,8 @@ class AddCredentialForm(forms.SelfHandlingForm):
     def __init__(self, request, *args, **kwargs):
         super(AddCredentialForm, self).__init__(request, *args, **kwargs)
         #self.fields['disk_format'].choices = SITE_TYPE_CHOICES
-        self.tenent = forms.CharField(max_length="255", initial='HEP', label=_("Tenant") ,required=True)
+        #self.tenent = forms.CharField(max_length="255", initial='HEP', label=_("Tenant") ,required=True)
+        self.tenent.clean('Hep')
 
     def handle(self, request, cred_data):
         
