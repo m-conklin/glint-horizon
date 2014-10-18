@@ -73,7 +73,7 @@ class EditCredentialView(forms.ModalFormView):
         print "get CredentialView Context Data"
         context = super(EditCredentialView, self).get_context_data(**kwargs)
         print "Sontext STR %s"%context
-        context['form']['tenent'].__str__('HEPI')
+        context['form'].fields['tenent'].initial='HEYPE'
         context['credential'] = self.get_object()
         print "new context str %s"%context
         return context
