@@ -74,12 +74,14 @@ class EditCredentialView(forms.ModalFormView):
         #    exceptions.handle(self.request, msg, redirect=url)
 
     def get_context_data(self, **kwargs):
-        print "get CredentialView Context Data"
+        #print "get CredentialView Context Data"
         context = super(EditCredentialView, self).get_context_data(**kwargs)
-        print "Sontext STR %s"%context
-        context['form'].fields['tenent'].initial='HEYPE2'
+        #print "Sontext STR %s"%context
+        #context['form'].fields['tenent'].initial=context
         context['credential'] = self.get_object()
-        print "new context str %s"%context
+        #print "new context str %s"%context
+        context['form'].fields['tenent'].initial=context['credential']['USER_TENANT']
+        context['form'].fields['user'].initial=context['credential']['USER_ID']
         return context
 
     def get_initial(self):
