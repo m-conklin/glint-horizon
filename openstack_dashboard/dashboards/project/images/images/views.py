@@ -64,6 +64,7 @@ class EditCredentialView(forms.ModalFormView):
         obj['site_id']=self.kwargs['site_id']
         obj['USER_TOKEN']=result['token']
         obj['USER_ID']=str(self.request.user)
+        obj['USER_TENANT']=self.request.user.token.tenant['name']
         return obj
         #try:
         #    return api.glance.image_get(self.request, self.kwargs['image_id'])
