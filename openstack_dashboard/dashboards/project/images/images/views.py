@@ -59,8 +59,11 @@ class EditCredentialView(forms.ModalFormView):
     @memoized.memoized_method
     def get_object(self):
         print "Get Credentials Object"
+        result = glint.get_glint_url_and_token(self.request) 
         obj = {}
         obj['site_id']=self.kwargs['site_id']
+        obj['USER_TOKEN']=result['token']
+        obj['USER_ID']=self.reqeust.user
         return obj
         #try:
         #    return api.glance.image_get(self.request, self.kwargs['image_id'])
