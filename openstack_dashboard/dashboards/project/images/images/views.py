@@ -84,7 +84,7 @@ class EditCredentialView(forms.ModalFormView):
         #print "Sontext STR %s"%context
         #context['form'].fields['tenent'].initial=context
         context['credential'] = self.get_object()
-        print "form str %s"%context['form']
+        print "form str %s"%context['credential']
         #context['form'].fields['tenent'].initial=context['credential']['USER_TENANT']
         #context['form'].fields['username'].initial=context['credential']['USER_ID']
         return context
