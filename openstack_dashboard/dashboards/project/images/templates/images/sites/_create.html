@@ -17,13 +17,13 @@
 <div class="right">
     <h3>{% trans "Description:" %}</h3>
     <p>
-        {% trans "Specify the Identification Service Endpoint URL for the Glint Service to use at the remote site." %}
+        {% trans "Specify the Identity Service Endpoint URL for the Glint Service to use at the remote site. This can be found from the access and security tab on the remote cloud's dashboard." %}
     </p>
     
 </div>
 {% endblock %}
 
 {% block modal-footer %}
-  <input class="btn btn-primary pull-right" type="submit" value="{% trans "Add Repository" %}" />
+  <input class="btn btn-primary pull-right" type="submit" value="{% trans "Save" %}" />
   <a href="{% url 'horizon:project:images:index' %}" class="btn secondary cancel close">{% trans "Cancel" %}</a>
 {% endblock %}

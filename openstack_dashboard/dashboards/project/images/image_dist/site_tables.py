@@ -353,7 +353,7 @@ class SitesTable(tables.DataTable):
     #    ("deleted", False),
     #)
     name = tables.Column(get_site_name, verbose_name=_("Name"))
-    site_url = tables.Column(get_site_url, verbose_name=_("Identification Service Endpoint URL"))
+    site_url = tables.Column(get_site_url, verbose_name=_("Identity Service Endpoint URL"))
     #auth_port = tables.Column(get_site_authport, verbose_name=_("Auth Port"))
     site_type = tables.Column(get_site_type, verbose_name=_("Cloud Type"))
     #status = tables.Column("status",
