@@ -65,6 +65,11 @@ class EditCredentialView(forms.ModalFormView):
         obj['USER_TOKEN']=result['token']
         obj['USER_ID']=str(self.request.user)
         obj['USER_TENANT']=self.request.user.token.tenant['name']
+        
+        data_json = requests.post("%sgetcredential/"%result['url'],data={"CK_TYPE":"ONE","SITE_ID":obj['site_id'],"USER_ID":obj['USER_ID'],"USER_TOKEN":"%s"%result['token'],"USER_TENANT":obj['USER_TENANT']},cookies=None).text
+        print "Get Credentials returned %s"%data_json
+        obj['REMOTE_SITE_CREDS']=data_json
+        
         return obj
         #try:
         #    return api.glance.image_get(self.request, self.kwargs['image_id'])
@@ -79,7 +84,7 @@ class EditCredentialView(forms.ModalFormView):
         #print "Sontext STR %s"%context
         #context['form'].fields['tenent'].initial=context
         context['credential'] = self.get_object()
-        #print "form str %s"%context['form']
+        print "form str %s"%context['form']
         #context['form'].fields['tenent'].initial=context['credential']['USER_TENANT']
         #context['form'].fields['username'].initial=context['credential']['USER_ID']
         return context
