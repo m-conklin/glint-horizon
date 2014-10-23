@@ -40,7 +40,7 @@ from openstack_dashboard.dashboards.project.images.images \
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from openstack_dashboard.api import glint
-import requests
+import requests,json
 
 @csrf_exempt
 def save(request):
@@ -84,9 +84,11 @@ class EditCredentialView(forms.ModalFormView):
         #print "Sontext STR %s"%context
         #context['form'].fields['tenent'].initial=context
         context['credential'] = self.get_object()
-        print "form str %s"%context['credential']['REMOTE_SITE_CREDS']
-        context['form'].fields['tenent'].initial=context['credential']['REMOTE_SITE_CREDS'].tenant
-        context['form'].fields['username'].initial=context['credential']['REMOTE_SITE_CREDS'].cred_id
+        #print "form str %s"%context['credential']['REMOTE_SITE_CREDS']
+        json_obj = json.loads(context['credential']['REMOTE_SITE_CREDS'])
+        print "json obj is %s"%json_obj
+        context['form'].fields['tenent'].initial=json_obj.tenant
+        context['form'].fields['username'].initial=json_obj.cred_id
         return context
 
     def get_initial(self):
