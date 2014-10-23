@@ -257,7 +257,7 @@ class CreateSiteForm(forms.SelfHandlingForm):
     disk_format = forms.ChoiceField(label=_('Format'),
                                     required=True,
                                     #choices=(('Openstack','Openstack'),('Nimbus','Nimbus'),('EC2','EC2'),('Azure','Azure')),
-                                    choices=(('Openstack','Openstack')),
+                                    choices=(('Openstack','Openstack'),),
                                     widget=forms.Select(attrs={'class':
                                                                'switchable'}))
     description = forms.CharField(widget=forms.widgets.Textarea(
