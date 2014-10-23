@@ -58,7 +58,7 @@ class EditCredentialView(forms.ModalFormView):
     
     @memoized.memoized_method
     def get_object(self):
-        print "Get Credentials Objects"
+        #print "Get Credentials Objects"
         result = glint.get_glint_url_and_token(self.request) 
         obj = {}
         obj['site_id']=self.kwargs['site_id']
@@ -67,7 +67,7 @@ class EditCredentialView(forms.ModalFormView):
         obj['USER_TENANT']=self.request.user.token.tenant['name']
         
         data_json = requests.post("%sgetcredential/"%result['url'],data={"CK_TYPE":"ONE","SITE_ID":obj['site_id'],"USER_ID":obj['USER_ID'],"USER_TOKEN":"%s"%result['token'],"USER_TENANT":obj['USER_TENANT']},cookies=None).text
-        print "Get Credentials returned %s"%data_json
+        #print "Get Credentials returned %s"%data_json
         obj['REMOTE_SITE_CREDS']=data_json
         
         return obj
@@ -86,13 +86,13 @@ class EditCredentialView(forms.ModalFormView):
         context['credential'] = self.get_object()
         #print "form str %s"%context['credential']['REMOTE_SITE_CREDS']
         json_obj = json.loads(context['credential']['REMOTE_SITE_CREDS'])
-        print "json obj is %s"%json_obj
+        #print "json obj is %s"%json_obj
         context['form'].fields['tenent'].initial=json_obj['tenant']
         context['form'].fields['username'].initial=json_obj['cred_id']
         return context
 
     def get_initial(self):
-        print "INIT SITE INFO %s"%self.get_object()
+        #print "INIT SITE INFO %s"%self.get_object()
         return self.get_object()
         #image = self.get_object()
         #properties = getattr(image, 'properties', {})
