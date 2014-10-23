@@ -252,7 +252,7 @@ class UpdateImageForm(forms.SelfHandlingForm):
 
 class CreateSiteForm(forms.SelfHandlingForm):
     name = forms.CharField(max_length="255", label=_("Name"), required=True)
-    url = forms.CharField(max_length="255", label=_("Url"), required=True)
+    url = forms.CharField(max_length="255", label=_("Identification Service Endpoint URL"), required=True)
     #port = forms.CharField(max_length="255", label=_("Port"), required=True)
     disk_format = forms.ChoiceField(label=_('Format'),
                                     required=True,
