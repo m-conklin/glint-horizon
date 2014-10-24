@@ -105,7 +105,7 @@ function save(){
 	for(var img in img_list){
 		for(var site in site_list){
 			var id = img_list[img].image_name+"_"+site_list[site].site_name;
-			
+			document.getElementById("progress_"+id).style.visibility="visible";
 			var is_src = document.getElementById(id).hasAttribute("is_src");
 			var is_sel =document.getElementById(id).checked;
 			
@@ -249,10 +249,10 @@ function image_select(id){
 	var is_sel =document.getElementById(id).checked;
 	console.log("is src "+is_src+" is checked "+is_sel);
 	if( (is_src && !is_sel) || (!is_src && is_sel) ){
-		document.getElementById("progress_"+id).style.visibility="visible";
+		//document.getElementById("progress_"+id).style.visibility="visible";
 		document.getElementById("pending_tag_"+id).style.visibility="visible";
 	}else{
-		document.getElementById("progress_"+id).style.visibility="hidden";
+		//document.getElementById("progress_"+id).style.visibility="hidden";
 		document.getElementById("pending_tag_"+id).style.visibility="hidden";
 	}
 }
