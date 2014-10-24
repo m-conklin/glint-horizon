@@ -248,10 +248,13 @@ function image_select(id){
 	var is_src = document.getElementById(id).hasAttribute("is_src");
 	var is_sel =document.getElementById(id).checked;
 	console.log("is src "+is_src+" is checked "+is_sel);
-	if( (is_src && !is_sel) || (!is_src && is_sel) )
-		document.getElementById("progress_"+id).style.visibility="visible"
-	else
-		document.getElementById("progress_"+id).style.visibility="hidden"
+	if( (is_src && !is_sel) || (!is_src && is_sel) ){
+		document.getElementById("progress_"+id).style.visibility="visible";
+		document.getElementById("pending_tag_"+id).style.visibility="visible";
+	}else{
+		document.getElementById("progress_"+id).style.visibility="hidden";
+		document.getElementById("pending_tag_"+id).style.visibility="hidden";
+	}
 }
 
 
