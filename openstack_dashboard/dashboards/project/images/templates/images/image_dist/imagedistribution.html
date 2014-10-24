@@ -105,11 +105,13 @@ function save(){
 	for(var img in img_list){
 		for(var site in site_list){
 			var id = img_list[img].image_name+"_"+site_list[site].site_name;
-			document.getElementById("progress_"+id).style.visibility="visible";
+			
 			var is_src = document.getElementById(id).hasAttribute("is_src");
 			var is_sel =document.getElementById(id).checked;
 			
 			if( is_src && !is_sel){ 
+				document.getElementById("progress_"+id).style.visibility="visible";
+				document.getElementById("pending_tag_"+id).style.visibility="hidden";
 				console.log("a remove image is needed at "+img_list[img].image_name+":"+site_list[site].site_name);
 				img_handler = new ImageRequestHandler(img_list[img].image_name+":"+site_list[site].site_name);
 				op_handlers[img_list[img].image_name+":"+site_list[site].site_name]=img_handler;
@@ -117,6 +119,8 @@ function save(){
 				img_handler.request( json_req,"save","progress_"+img_list[img].image_name+"_"+site_list[site].site_name,img_list[img].image_name+"_"+site_list[site].site_name);
 			
 			}else if (!is_src && is_sel){
+				document.getElementById("progress_"+id).style.visibility="visible";
+				document.getElementById("pending_tag_"+id).style.visibility="hidden";
 				console.log("a add image image is needed at "+img_list[img].image_name+":"+site_list[site].site_name);
 				img_handler = new ImageRequestHandler(img_list[img].image_name+":"+site_list[site].site_name);
 				op_handlers[img_list[img].image_name+":"+site_list[site].site_name]=img_handler;
