@@ -291,12 +291,12 @@ function image_select(id){
 		   			is_src="True" is_public="{{col.is_public}}" is_owner="{{col.is_owner}}"  checked
 		   	     {% endif %}   
 		   {% endfor %}
-		   > <progress id="progress_{{row.image}}_{{site_name.name}}" style="visibility:hidden" max='100'><span>0</span>%</progress>
+		   > 
+		   <div id="pending_tag_{{row.image}}_{{site_name.name}} style="visibility:hidden">pending</div>
+		   <progress id="progress_{{row.image}}_{{site_name.name}}" style="visibility:hidden" max='100'><span>0</span>%</progress>
 		     
 	   </td>
-	   <td>
-	   		<div id="pending_tag_{{row.image}}_{{site_name.name}} style="visibility:hidden">pending</div>
-	   </td>
+	   
 	   {% endfor %}
 	
   </tr>
