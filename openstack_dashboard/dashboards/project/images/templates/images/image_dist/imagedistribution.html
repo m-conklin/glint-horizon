@@ -287,15 +287,15 @@ function image_select(id){
 	   {% for site_name in data.sites %}
 	   <td> 
 	       
-	       <input type="checkbox" id="{{row.image}}_{{site_name.name}}" style="float:right;" onclick="image_select('{{row.image}}_{{site_name.name}}')" 
+	       <input type="checkbox" id="{{row.image}}_{{site_name.name}}" style="float:left;" onclick="image_select('{{row.image}}_{{site_name.name}}')" 
 		   {% for col in row.sites %}
 		         {% if col.name == site_name.name %}
 		   			is_src="True" is_public="{{col.is_public}}" is_owner="{{col.is_owner}}"  checked
 		   	     {% endif %}   
 		   {% endfor %}
 		   > 
-		   <div id="pending_tag_{{row.image}}_{{site_name.name}} style="visibility:hidden;float:right;">pending</div>
-		   <progress id="progress_{{row.image}}_{{site_name.name}}" style="visibility:hidden;float:left;" max='100'><span>0</span>%</progress>
+		   <div id="pending_tag_{{row.image}}_{{site_name.name}} style="visibility:hidden;float:left;">pending</div>
+		   <progress id="progress_{{row.image}}_{{site_name.name}}" style="visibility:hidden;float:right;" max='100'><span>0</span>%</progress>
 		     
 	   </td>
 	   
