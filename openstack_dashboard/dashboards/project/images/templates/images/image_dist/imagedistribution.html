@@ -17,7 +17,7 @@ var img_list=[
 
 var site_list=[
 {% for row in data.sites  %}
-  {'site_name':'{{row.name}}','tenent_name':'{{row.tenent}}' },
+  {'site_name':'{{row.name}}','tenant_name':'{{row.tenant}}' },
 {% endfor %}
 ]
 
@@ -115,7 +115,7 @@ function save(){
 				console.log("a remove image is needed at "+img_list[img].image_name+":"+site_list[site].site_name);
 				img_handler = new ImageRequestHandler(img_list[img].image_name+":"+site_list[site].site_name);
 				op_handlers[img_list[img].image_name+":"+site_list[site].site_name]=img_handler;
-				json_req='{"op":"rem_img","image_name":"'+img_list[img].image_name+'","image_src_tenent":"'+site_list[site].tenent_name+'","img_src_site":"'+site_list[site].site_name+'"}'
+				json_req='{"op":"rem_img","image_name":"'+img_list[img].image_name+'","image_src_tenant":"'+site_list[site].tenant_name+'","img_src_site":"'+site_list[site].site_name+'"}'
 				img_handler.request( json_req,"save","progress_"+img_list[img].image_name+"_"+site_list[site].site_name,img_list[img].image_name+"_"+site_list[site].site_name);
 			
 			}else if (!is_src && is_sel){
@@ -132,14 +132,14 @@ function save(){
 					if (is_src && is_sel){
 					    obj = {}
 					    obj.site_name = site_list[src_site].site_name;
-					    obj.tenent_name = site_list[src_site].tenent_name;
+					    obj.tenant_name = site_list[src_site].tenant_name;
 						src_list.push(obj);
 					}
 				}
 				//img_src_list='[{"site_name":"Rat01-hep"},{"site_name":"Mouse-hep"}]'
 				img_src_list=JSON.stringify(src_list);
 				
-				json_req='{"container_format":"'+img_list[img].container_format+'","disk_format":"'+img_list[img].disk_format+'","op":"add_img","image_name":"'+img_list[img].image_name+'","image_dest_tenent":"'+site_list[site].tenent_name+'","image_dest":"'+site_list[site].site_name+'","img_src":'+img_src_list+'}'
+				json_req='{"container_format":"'+img_list[img].container_format+'","disk_format":"'+img_list[img].disk_format+'","op":"add_img","image_name":"'+img_list[img].image_name+'","image_dest_tenant":"'+site_list[site].tenant_name+'","image_dest":"'+site_list[site].site_name+'","img_src":'+img_src_list+'}'
 				img_handler.request( json_req,"save","progress_"+img_list[img].image_name+"_"+site_list[site].site_name,img_list[img].image_name+"_"+site_list[site].site_name);
 			}
 		}
@@ -281,7 +281,7 @@ function image_select(id){
 <table border=1 class="table table-bordered table-striped datatable">
 <tr><td></td>
 {% for row in data.sites %}
-<td><b>{{row.name}} ({{row.tenent}})</b></td>
+<td><b>{{row.name}} ({{row.tenant}})</b></td>
 {% endfor %}
 
 </tr>

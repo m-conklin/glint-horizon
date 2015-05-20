@@ -288,7 +288,7 @@ class CreateSiteForm(forms.SelfHandlingForm):
             
 class AddCredentialForm(forms.SelfHandlingForm):
     site_id = forms.CharField(widget=forms.HiddenInput())
-    tenent = forms.CharField(max_length="255", label=_("Tenant"), required=True)
+    tenant = forms.CharField(max_length="255", label=_("Tenant"), required=True)
     username = forms.CharField(max_length="255", label=_("User Name"), required=True)
     password = forms.CharField(max_length="255", label=_("Password"), required=True,widget=forms.PasswordInput())
     
@@ -296,8 +296,8 @@ class AddCredentialForm(forms.SelfHandlingForm):
     def __init__(self, request, *args, **kwargs):
         super(AddCredentialForm, self).__init__(request, *args, **kwargs)
         #self.fields['disk_format'].choices = SITE_TYPE_CHOICES
-        #self.tenent = forms.CharField(max_length="255", initial='HEP', label=_("Tenant") ,required=True)
-        #self.tenent.clean('Hep')
+        #self.tenant = forms.CharField(max_length="255", initial='HEP', label=_("Tenant") ,required=True)
+        #self.tenant.clean('Hep')
 
     def handle(self, request, cred_data):
         
